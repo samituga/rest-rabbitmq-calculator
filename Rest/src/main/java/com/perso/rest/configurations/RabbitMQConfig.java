@@ -1,4 +1,4 @@
-package com.perso.rest;
+package com.perso.rest.configurations;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -12,14 +12,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${spring.rabbitmq.queue}")
-    public static String queue;
+    @Value("${rabbitmq.queue}")
+    public String queue;
 
-    @Value("${spring.rabbitmq.exchange}")
-    public static String exchange;
+    @Value("${rabbitmq.exchange}")
+    public String exchange;
 
-    @Value("${spring.rabbitmq.routing-key}")
-    public static String routingKey;
+    @Value("${rabbitmq.routing-key}")
+    public String routingKey;
 
 
     @Bean

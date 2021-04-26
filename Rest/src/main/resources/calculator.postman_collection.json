@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "caa60917-ddde-4421-9ba9-f9b35ee7f281",
+		"name": "calculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "sum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/sum/3/6",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{api.version}}",
+						"calculator",
+						"sum",
+						"3",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "subtraction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/subtraction/3/6",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{api.version}}",
+						"calculator",
+						"subtraction",
+						"3",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "multiplication",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/multiplication/3/6",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{api.version}}",
+						"calculator",
+						"multiplication",
+						"3",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "division",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/division/3/6",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{api.version}}",
+						"calculator",
+						"division",
+						"3",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost"
+		},
+		{
+			"key": "api.version",
+			"value": "v1"
+		},
+		{
+			"key": "port",
+			"value": "8080"
+		}
+	]
+}

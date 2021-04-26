@@ -21,6 +21,7 @@
     <modules>
         <module>Calculator</module>
         <module>Rest</module>
+        <module>Common</module>
     </modules>
 
 </project>
