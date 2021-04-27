@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/sum/3/6",
+					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/sum?n1=3&n2=6",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -20,9 +20,17 @@
 					"path": [
 						"{{api.version}}",
 						"calculator",
-						"sum",
-						"3",
-						"6"
+						"sum"
+					],
+					"query": [
+						{
+							"key": "n1",
+							"value": "3"
+						},
+						{
+							"key": "n2",
+							"value": "6"
+						}
 					]
 				}
 			},
@@ -34,7 +42,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/subtraction/3/6",
+					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/subtraction?n1=3&n2=6",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -43,9 +51,17 @@
 					"path": [
 						"{{api.version}}",
 						"calculator",
-						"subtraction",
-						"3",
-						"6"
+						"subtraction"
+					],
+					"query": [
+						{
+							"key": "n1",
+							"value": "3"
+						},
+						{
+							"key": "n2",
+							"value": "6"
+						}
 					]
 				}
 			},
@@ -57,7 +73,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/multiplication/3/6",
+					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/multiplication?n1=3&n2=6",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -66,9 +82,17 @@
 					"path": [
 						"{{api.version}}",
 						"calculator",
-						"multiplication",
-						"3",
-						"6"
+						"multiplication"
+					],
+					"query": [
+						{
+							"key": "n1",
+							"value": "3"
+						},
+						{
+							"key": "n2",
+							"value": "6"
+						}
 					]
 				}
 			},
@@ -80,7 +104,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/division/3/6",
+					"raw": "http://{{host}}:{{port}}/{{api.version}}/calculator/division?n1=3.3&n2=6.4",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -89,9 +113,17 @@
 					"path": [
 						"{{api.version}}",
 						"calculator",
-						"division",
-						"3",
-						"6"
+						"division"
+					],
+					"query": [
+						{
+							"key": "n1",
+							"value": "3.3"
+						},
+						{
+							"key": "n2",
+							"value": "6.4"
+						}
 					]
 				}
 			},
