@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.perso</groupId>
-    <artifactId>RestRabbitMQCalculator</artifactId>
+    <artifactId>rest-rabbitmq-calculator</artifactId>
     <version>${revision}</version>
-    <name>RestRabbitMQCalculator</name>
-    <description>RestRabbitMQCalculator</description>
+    <name>rest-rabbitmq-calculator</name>
+    <description>rest-rabbitmq-calculator</description>
     <packaging>pom</packaging>
 
     <properties>

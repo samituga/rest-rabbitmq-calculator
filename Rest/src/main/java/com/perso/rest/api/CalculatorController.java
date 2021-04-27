@@ -1,18 +1,20 @@
 package com.perso.rest.api;
 
-import model.OperationMessage;
-import model.OperationResult;
+import lombok.extern.slf4j.Slf4j;
+import com.perso.common.model.OperationMessage;
+import com.perso.common.model.OperationResult;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${rest.version-base-path}" + "/${spring.data.rest.base-path}")
+@Slf4j
 public class CalculatorController {
 
     private final RabbitTemplate rabbitTemplate;
@@ -28,35 +30,42 @@ public class CalculatorController {
         return HttpStatus.OK;
     }
 
-    @GetMapping("sum/{n1}/{n2}")
-    public OperationResult sum(@PathVariable long n1, @PathVariable long n2) {
+    @GetMapping("sum")
+    public OperationResult sum(@RequestParam double n1, @RequestParam double n2) {
         return doIt(OperationMessage.OperationType.SUM, n1, n2);
     }
 
-    @GetMapping("subtraction/{n1}/{n2}")
-    public OperationResult subtraction(@PathVariable long n1, @PathVariable long n2) {
+    @GetMapping("subtraction")
+    public OperationResult subtraction(@RequestParam double n1, @RequestParam double n2) {
         return doIt(OperationMessage.OperationType.SUBTRACTION, n1, n2);
     }
 
-    @GetMapping("multiplication/{n1}/{n2}")
-    public OperationResult multiplication(@PathVariable long n1, @PathVariable long n2) {
+    @GetMapping("multiplication")
+    public OperationResult multiplication(@RequestParam double n1, @RequestParam double n2) {
         return doIt(OperationMessage.OperationType.MULTIPLICATION, n1, n2);
     }
 
-    @GetMapping("division/{n1}/{n2}")
-    public OperationResult division(@PathVariable long n1, @PathVariable long n2) {
+    @GetMapping("division")
+    public OperationResult division(@RequestParam double n1, @RequestParam double n2) {
         return doIt(OperationMessage.OperationType.DIVISION, n1, n2);
     }
 
-    private OperationResult doIt(OperationMessage.OperationType operationType, long n1, long n2) {
+    private OperationResult doIt(OperationMessage.OperationType operationType, double n1, double n2) {
         OperationMessage message = buildMessage(operationType, n1, n2);
 
-        return rabbitTemplate.convertSendAndReceiveAsType(
+        OperationResult result = rabbitTemplate.convertSendAndReceiveAsType(
                 binding.getExchange(),
                 binding.getRoutingKey(),
                 message,
                 ParameterizedTypeReference.<OperationResult>forType(OperationResult.class)
         );
+
+        if (result != null) {
+            log.info("Received response, UUID: " + result.getUuid() + " payload: " + result);
+        } else {
+            log.warn("No response received for UUID: " + message.getUuid());
+        }
+        return result;
     }
 
     private OperationMessage buildMessage(OperationMessage.OperationType operationType, double n1, double n2) {

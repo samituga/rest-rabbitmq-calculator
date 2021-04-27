@@ -1,7 +1,8 @@
 package com.perso.calculator;
 
-import model.OperationMessage;
-import model.OperationResult;
+import lombok.extern.slf4j.Slf4j;
+import com.perso.common.model.OperationMessage;
+import com.perso.common.model.OperationResult;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 @Component
+@Slf4j
 public class CalculatorConsumer {
 
     private final Map<OperationMessage.OperationType, BiFunction<Double, Double, Double>> operationHandlers;
@@ -19,10 +21,13 @@ public class CalculatorConsumer {
     }
 
     public OperationResult messageFromQueue(OperationMessage message) {
-        double result = operationHandlers.get(message.getOperationType()).apply(message.getN1(), message.getN2());
-        return OperationResult.builder()
-                .result(result)
+        log.info("Received message, UUID: " + message.getUuid() + " payload: " + message);
+        double operationResult = operationHandlers.get(message.getOperationType()).apply(message.getN1(), message.getN2());
+        OperationResult result = OperationResult.builder()
+                .result(operationResult)
                 .build();
+        result.setUuid(message.getUuid());
+        return result;
     }
 
     private void registerHandlers() {
